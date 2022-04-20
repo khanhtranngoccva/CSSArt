@@ -1,0 +1,977 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+:root {
+    --accentRed: #ff986b;
+    --accentGlass: #3e768d;
+    --accentGold: #ffeb88;
+    --plantEdge: #008d67;
+}
+
+.flipHorizontal {
+    transform: scaleX(-1);
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    position: fixed;
+}
+
+body *::before, body *::after {
+    content: "";
+    display: block;
+}
+
+.canvas {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+}
+
+.ground {
+    background: #ff6d6d;
+    height: 100px;
+    width: 100%;
+}
+
+.nonGround {
+    flex: 1 0 auto;
+    background: #7cb8e8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 5000px;
+}
+
+.centerBlock {
+    display: flex;
+    flex-direction: column-reverse;
+    z-index: 1;
+}
+
+.centerBlockBottom {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+}
+
+.centerBlockBottomSegment {
+    display: flex;
+    justify-content: center;
+}
+
+.centerBlockBottomSegmentWall {
+    display: flex;
+    flex-direction: column-reverse;
+    background: white;
+    width: 60px;
+    height: 275px;
+    position: relative;
+}
+
+.centerBlockBottomSegmentWall:first-of-type {
+    transform-origin: 100% 100%;
+    transform: perspective(100px) rotateY(-8deg) scaleY(0.98) scaleX(0.8);
+}
+
+.centerBlockBottomSegmentWall:nth-of-type(2) {
+    transform-origin: 100% 100%;
+    transform: perspective(100px) rotateY(-2deg) scaleX(1.04);
+}
+
+.centerBlockBottomSegmentWall:nth-of-type(3) {
+    /*width: 100px;*/
+}
+
+.centerBlockBottomSegmentWall:nth-of-type(4) {
+    transform-origin: 0% 100%;
+    transform: perspective(100px) rotateY(2deg) scaleX(1.04);
+}
+
+.centerBlockBottomSegmentWall:nth-of-type(5) {
+    transform-origin: 0% 100%;
+    transform: perspective(100px) rotateY(9deg) scaleY(0.98) scaleX(0.8);
+}
+
+.centerBlockBottomSegmentWall > .bottom {
+    --stripe: #797979;
+    height: 20px;
+    background: repeating-linear-gradient(var(--stripe) 0px, var(--stripe) 2px, transparent 2px, transparent 3px), gray;
+}
+
+.centerBlockBottomSegmentWall > .middle {
+    height: 135px;
+    background: #ff986b;
+    display: flex;
+    flex-direction: column-reverse;
+    box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.21);
+
+}
+
+.centerBlockBottomSegmentWall > .middle > .lower, .centerBlockBottomSegmentWall > .middle > .upper {
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+}
+
+.centerBlockBottomSegmentWall > .middle > .lower {
+    height: 80px;
+    /*background: red;*/
+}
+
+.centerBlockBottomSegmentWall > .middle > .upper {
+    flex: 1;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.centerBlockBottomSegmentWall > .middle > .lower > .arc {
+    width: 70%;
+    aspect-ratio: 1/1.6;
+    border-radius: 50px 50px 0 0;
+    box-shadow: inset 0px 1px 0 1px rgba(0, 0, 0, 0.21);
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+}
+
+.centerBlockBottomSegmentWall > .middle > .lower > .arc::before {
+    width: 80%;
+    aspect-ratio: 1/1.85;
+    border-radius: 50px 50px 0 0;
+    background: repeating-linear-gradient(90deg, transparent 0, transparent 7px, var(--accentRed) 7px, var(--accentRed) 9px), repeating-linear-gradient(transparent 0, transparent 9px, var(--accentRed) 9px, var(--accentRed) 11px), var(--accentGlass);
+}
+
+.centerBlockBottomSegmentWall > .middle > .upper > .arc {
+    width: 70%;
+    aspect-ratio: 1/1;
+    box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.21);
+    border-radius: 50px 50px 0 0;
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+}
+
+
+
+.centerBlockBottomSegmentWall > .middle > .upper > .arc > .arcInner {
+    width: 80%;
+    aspect-ratio: 1/1.12;
+    border-radius: 50px 50px 0 0;
+    box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.21);
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+}
+
+.centerBlockBottomSegmentWall > .middle > .upper > .arc > .arcInner::before {
+    width: 80%;
+    aspect-ratio: 1/1.25;
+    border-radius: 50px 50px 0 0;
+    box-shadow: inset 0px 1px 0px 1px rgba(0, 0, 0, 0.21);
+}
+
+.centerBlockBottomSegmentWall > .upper {
+    height: 100px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+}
+
+.centerBlockBottomSegmentWall > .upper::before {
+    /*height: 2px;*/
+    width: 100%;
+
+}
+
+.centerBlockBottomSegmentWall > .upper > .arc {
+    width: 70%;
+    aspect-ratio: 1/1;
+    box-shadow: inset 0 1px 1px 1px rgba(0, 0, 0, 0.21);
+    border-radius: 50px 50px 0 0;
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+    background: var(--accentRed);
+}
+
+.centerBlockBottomSegmentWall:first-of-type > .upper > .arc, .centerBlockBottomSegmentWall:last-of-type > .upper > .arc {
+    background: none;
+}
+
+.centerBlockBottomSegmentWall > .upper > .arc > .arcInner {
+    width: 80%;
+    aspect-ratio: 1/1.12;
+    border-radius: 50px 50px 0 0;
+    box-shadow: inset 0 1px 1px 1px rgba(0, 0, 0, 0.21);
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+}
+
+.centerBlockBottomSegmentWall > .upper > .arc > .arcInner::before {
+    width: 80%;
+    aspect-ratio: 1/1.25;
+    border-radius: 50px 50px 0 0;
+    box-shadow: inset 0 1px 0 1px rgba(0, 0, 0, 0.21);
+}
+
+.centerBlockBottomSegmentWall > .lower {
+    height: 40px;
+    background: #f69e79;
+    box-shadow: inset 0 3px 1px -1px var(--plantEdge);
+}
+
+.centerBlockBottomSegmentWall > .top1 {
+    width: 110%;
+    height: 5px;
+    background: var(--plantEdge);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%);
+}
+
+.centerBlockBottomSegmentWall > .top2 {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(var(--accentGold) 40%, rgba(0, 0, 0, 0.47) 48%, rgba(0, 0, 0, 0.47) 52%, var(--accentGold) 60%);
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    transform: translate(-50%);
+}
+
+.centerBlockBottomSideMid {
+    width: 100px;
+    background: white;
+    height: 220px;
+    border-radius: 50% / 5% 5% 0 0;
+    box-shadow: inset 2px 3px 1px var(--plantEdge), inset -1px 0 2px rgba(0, 0, 0, 0.49),inset 0 6px 0px var(--accentGold), inset 0 7px 0px rgba(0, 0, 0, 0.42), inset 0 10px 0px var(--accentGold);
+    position: relative;
+    left: 16px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.centerBlockBottomSideMid.flipHorizontal {
+    left: -16px;
+}
+
+.centerBlockBottomSideMid > .lower, .centerBlockBottomSideMid > .upper, .centerBlockBottomSideMid > .top {
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.centerBlockBottomSideMid > .lower > .arc, .centerBlockBottomSideMid > .upper > .arc {
+    width: 35%;
+    aspect-ratio: 1/1.2;
+    border-radius: 50px 50px 0 0;
+    box-shadow: inset 0px 1px 0 1px rgba(0, 0, 0, 0.21), inset 0 -1px 1px rgba(0, 0, 0, 0.21);
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+}
+
+.centerBlockBottomSideMid > .lower > .arc::before, .centerBlockBottomSideMid > .upper > .arc::before {
+    width: 80%;
+    aspect-ratio: 1/1.35;
+    border-radius: 50px 50px 0 0;
+    background: linear-gradient(90deg, transparent 45%, var(--accentRed) 45%, var(--accentRed) 55%, transparent 6px), repeating-linear-gradient(transparent 0, transparent 10px, var(--accentRed) 10px, var(--accentRed) 11px), var(--accentGlass);
+}
+
+.centerBlockBottomSideMid > .bottom {
+    --stripe: #797979;
+    height: 17px;
+    background: repeating-linear-gradient(var(--stripe) 0px, var(--stripe) 2px, transparent 2px, transparent 3px), gray;
+}
+
+.centerBlockBottomSideMid > .top > .arc {
+    width: 30%;
+    aspect-ratio: 1/1;
+    box-shadow: inset 0 1px 0px 1px rgba(0, 0, 0, 0.21), inset 0 -1px 2px #00000044;
+    border-radius: 50px 50px 0 0;
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+}
+
+.centerBlockBottomSideMid > .top > .arc:first-of-type {
+    transform-origin: 100% 140%;
+    transform: perspective(100px) rotateY(-30deg);
+}
+
+.centerBlockBottomSideMid > .top > .arc:last-of-type {
+    transform-origin: 0% 140%;
+    transform: perspective(100px) rotateY(30deg);
+}
+
+.centerBlockBottomSideMid > .top > .arc > .arcInner {
+    width: 75%;
+    aspect-ratio: 1/1.12;
+    border-radius: 50px 50px 0 0;
+    box-shadow: inset 0 1px 0px 1px rgba(0, 0, 0, 0.21);
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+}
+
+.centerBlockBottomSideMid.shrink {
+    transform-origin: 100% 100%;
+    transform: scale(0.93);
+}
+
+.centerBlockBottomSideMid.shrink.flipHorizontal {
+    transform-origin: 48% 100%;
+    transform: scaleX(-1) scale(0.93);
+}
+
+.flipHorizontal {
+    transform: scaleX(-1);
+}
+
+.centerBlockTop {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    top: 70px;
+    z-index: 0;
+}
+
+
+
+.centerBlockTopSegment, .centerBlockTopSideSegment {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.centerBlockTopSegment {
+    z-index: 0;
+}
+
+.centerBlockTopSegmentBottom, .centerBlockTopSideSegmentBottom {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.centerBlockTopSegmentBottomWall, .centerBlockTopSideSegmentBottomWall {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    background: white;
+    width: 50px;
+    height: 200px;
+    position: relative;
+    box-shadow: inset 0px 3px 0px var(--plantEdge),inset 0 6px 0px var(--accentGold), inset 0 7px 0px rgba(0, 0, 0, 0.42), inset 0 10px 0px var(--accentGold);
+}
+
+.centerBlockTopSegmentBottomWall:first-of-type, .centerBlockTopSideSegmentBottomWall:first-of-type {
+    transform-origin: 100% 100%;
+    transform: perspective(100px) rotateY(-20deg) scaleY(0.945) scaleX(0.8);
+}
+
+.centerBlockTopSegmentBottomWall:nth-of-type(2), .centerBlockTopSideSegmentBottomWall:nth-of-type(2) {
+    transform-origin: 100% 100%;
+    transform: perspective(100px) rotateY(-6deg) scaleX(1.07);
+}
+
+
+.centerBlockTopSegmentBottomWall:nth-of-type(4), .centerBlockTopSideSegmentBottomWall:nth-of-type(4)  {
+    transform-origin: 0% 100%;
+    transform: perspective(100px) rotateY(6deg) scaleX(1.07);
+}
+
+.centerBlockTopSegmentBottomWall:nth-of-type(5), .centerBlockTopSideSegmentBottomWall:nth-of-type(5) {
+    transform-origin: 0% 100%;
+    transform: perspective(100px) rotateY(20deg) scaleY(0.945) scaleX(0.8);
+}
+
+.centerBlockTopSideSegment {
+    transform-origin: 50% 100%;
+    transform: scale(0.5, 0.5);
+    position: relative;
+    left: 88px;
+}
+
+.centerBlockTopSideSegment:nth-of-type(4) {
+    left: -88px;
+}
+
+.centerBlockTopSideSegment:nth-of-type(5) {
+    left: -88px;
+}
+
+.centerBlockTopSegmentTop {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    align-items: center;
+    z-index: 0;
+    top: 100px;
+}
+
+.centerBlockTopSegmentTop .bell {
+    /*position: absolute;*/
+    /*background: radial-gradient(at 50% 100%, #ffcb00, #ffda00);*/
+    background: linear-gradient(#e5a913, gold);
+    /*background: #238374;*/
+    position: relative;
+    width: 180px;
+    aspect-ratio: 15/7;
+    border-radius: 50% / 100% 100% 0 0;
+    top: -70px;
+    z-index: 5;
+}
+
+.centerBlockTopSideSegment .bell {
+    background: #3d9a6c;
+}
+
+.centerBlockTopSegmentTop .middle {
+    background: #fad16e;
+    width: 50px;
+    height: 100px;
+    position: relative;
+    display: flex;
+    top: -30px;
+    border-radius: 50% / 10% 10% 0 0;
+    column-gap: 2px;
+    padding-inline: 2px;
+    overflow: hidden;
+    /*padding-top: 6px;*/
+    box-shadow: 0 -5px #fad16e;
+    z-index: 3;
+}
+
+.centerBlockTopSegmentTop .middle > .middleGap {
+    flex: 1;
+    background: #d0a83f;
+    border-radius: 10px 10px 0 0;
+}
+
+.centerBlockTopSegmentTop > .middleRing {
+    background: linear-gradient(#ecbe39, gold);
+    position: relative;
+    width: 70px;
+    aspect-ratio: 2/1;
+    border-radius: 50%;
+    top: 50px;
+    z-index: 4;
+}
+
+.centerBlockTopSegmentTop > .middleRing2 {
+    background:  linear-gradient(#ecbe39, #fad16e);
+    z-index: 2;
+    top: 24px;
+}
+
+.centerBlockTopSegmentTop > .topBell {
+    background: linear-gradient(#ecbe39, gold);
+    position: relative;
+    width: 55px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    top: 50px;
+    z-index: 1;
+}
+
+.cross {
+    width: 4px;
+    aspect-ratio: 1/15;
+    position: relative;
+    background: gold;
+    top: 50px;
+}
+
+.cross::before {
+    aspect-ratio: 10/1;
+    height: 4px;
+    background: gold;
+    left: 50%;
+    top: 30%;
+    position: absolute;
+    transform: translate(-50%);
+}
+
+.cross::after {
+    width: 15px;
+    aspect-ratio: 1/1;
+    background: gold;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%);
+}
+
+.centerBlockTopSideSegment .topBell {
+    border-radius:0;
+    clip-path: polygon(45% 0, 55% 0, 100% 100%, 0% 100%);
+}
+
+
+.centerBlockTopSideSegmentBottomWall > .arc, .centerBlockTopSegmentBottomWall > .arc {
+    width: 75%;
+    aspect-ratio: 1/4.5;
+    border-radius: 50px 50px 0 0;
+    box-shadow: inset 0px 1px 0 1px rgba(0, 0, 0, 0.21), inset 0 -1px 1px rgba(0, 0, 0, 0.21);
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+}
+
+.centerBlockTopSideSegmentBottomWall > .arc::before, .centerBlockTopSegmentBottomWall > .arc::before {
+    width: 80%;
+    aspect-ratio: 1/5.5;
+    border-radius: 50px 50px 0 0;
+    /*background: linear-gradient(90deg, transparent 45%, var(--accentRed) 45%, var(--accentRed) 55%, transparent 55%), repeating-linear-gradient(transparent 0, transparent 20px, var(--accentRed) 20px, var(--accentRed) 24px), var(--accentGlass);*/
+    background: var(--accentGlass);
+}
+
+
+.centerBlockTopEdgeSegment .centerBlockTopSegmentBottomWall:nth-of-type(1), .centerBlockTopEdgeSegment .centerBlockTopSideSegmentBottomWall:nth-of-type(1) {
+    transform-origin: 100% 100%;
+    transform: perspective(100px) rotateY(-6deg) scaleX(1.07);
+}
+
+.centerBlockTopEdgeSegment .centerBlockTopSegmentBottomWall:nth-of-type(2), .centerBlockTopEdgeSegment .centerBlockTopSideSegmentBottomWall:nth-of-type(2) {
+    transform: none;
+}
+
+.centerBlockTopEdgeSegment .centerBlockTopSegmentBottomWall:nth-of-type(3), .centerBlockTopEdgeSegment .centerBlockTopSideSegmentBottomWall:nth-of-type(3)  {
+    transform-origin: 0% 100%;
+    transform: perspective(100px) rotateY(6deg) scaleX(1.07);
+}
+
+.centerBlockTopEdgeSegment .bell {
+    width: 140px;
+    aspect-ratio: 2/1;
+}
+
+.centerBlockTopEdgeSegment {
+    left: 200px;
+    top: 40px;
+}
+
+.centerBlockTopEdgeSegment:last-of-type {
+    left: -200px;
+}
+
+.centerBlockTopEdgeSegment .arc::before {
+    background: var(--accentGlass);
+}
+
+
+.sideBlock {
+    width: 300px;
+    height: 240px;
+    background: white;
+    position: relative;
+    left: 210px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+}
+
+.sideBlock::after {
+    position: absolute;
+    height: 100%;
+    width: 300px;
+    background: #f6f6f6;
+    left: 100%;
+    top: 0;
+    transform-origin: 0% 50%;
+    transform: perspective(100px) rotateY(40deg);
+}
+
+.sideBlock > .top {
+    display: flex;
+    flex-direction: column-reverse;
+    position: absolute;
+    width: 100%;
+    height: 15px;
+    top: 0%;
+    background: white;
+    box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.33),0 5px var(--plantEdge);
+    z-index: 1;
+}
+
+.sideRoof {
+    position: absolute;
+    height: 60px;
+    width: 90px;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.sideRoofLeft, .sideRoofRight {
+    width: 15px;
+    background: white;
+    z-index: 3;
+}
+
+.sideRoofLeft::before, .sideRoofRight::before {
+    width: 100%;
+    height: 14px;
+    box-shadow: inset 0px -2px 1px -1px #00000044, inset 0px 2px 1px -1px #00000044;
+    position: relative;
+    top: -1px;
+}
+
+.sideRoofLeft {
+    box-shadow: 2px 0 1px #00000022;
+}
+
+.sideRoofRight {
+    box-shadow: -1px 0 1px #00000022;
+}
+
+.sideBlock > .top > .sideRoof {
+    position: absolute;
+    width: 100px;
+}
+
+
+.sideRoofMid {
+    flex: 1;
+    /*height: 50px;*/
+    background: #fcfcfc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.sideRoofMid::before {
+    width: 100%;
+    height: 12px;
+    background: #ffffff;
+    position: relative;
+    top: -11px;
+    box-shadow: inset 0px -2px 1px -1px #00000044, inset 0px 2px 1px -1px #00000044;
+}
+
+.sideRoof::after {
+    position: absolute;
+    width: 14px;
+    height: calc(100% - 16px);
+    top: -1px;
+    background: #f1f1f1;
+    left: 100%;
+    transform-origin: 0% 100%;
+    transform: perspective(40px) rotateY(27deg);
+    box-shadow: 0 -4px var(--plantEdge);
+    z-index: -2;
+}
+
+.sideRoofMidCenter {
+    width: 40%;
+    aspect-ratio: 1/1;
+    transform: scaleX(1.2) rotate(45deg);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.45);
+    padding: 6%;
+    border-radius: 5px;
+}
+
+.sideRoofMidCenter::before {
+    width: 100%;
+    aspect-ratio: 1/1;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.45);
+    border-radius: 5px;
+}
+
+.sideRoofTop {
+    width: 100%;
+    aspect-ratio: 4/1;
+    position: absolute;
+    bottom: 100%;
+    filter: drop-shadow(0 -1px var(--plantEdge)) drop-shadow(0 -1px var(--plantEdge)) drop-shadow(2px 0 var(--plantEdge)) drop-shadow(-2px 0 var(--plantEdge));
+    box-shadow: 0 2px 0px -1px rgba(0, 0, 0, 0.1);
+    transform-origin: 50% 100%;
+    transform: scale(1.05);
+}
+
+.sideRoofTop::before {
+    width: 100%;
+    height: 100%;
+    background: #f6f6f6;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.sideBlock.rightBlock {
+    transform: scaleX(-1);
+    left: -210px;
+}
+
+.sideBlock > .inner, .sideBlock > .mid, .sideBlock > .outer {
+    display: flex;
+    height: calc(100% - 20px);
+    flex-direction: column;
+    box-shadow: inset 0 4px gold, inset 0 8px white, inset 0 12px gold;
+}
+
+.sideBlock > .inner {
+    width: 100px;
+}
+
+.sideBlock > .mid {
+    width: 40px;
+    z-index: 1;
+    box-shadow: -1px 0 1px #00000055, 4px 0 1px -1px #00000055, inset 0 5px gold, inset 0 10px white, inset 0 15px gold;
+}
+
+.sideBlock > .outer {
+    flex: 1;
+}
+
+.sideBlock .lower, .sideBlock .upper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.sideBlock .upper {
+    padding-top: 18px;
+    align-items: center;
+    box-shadow: inset 0 3px 1px -1px #00000055, 0 3px 1px -1px VAR(--plantEdge);
+}
+
+.sideBlock .lower {
+    align-items: flex-end;
+}
+
+.sideBlock > .inner > .upper > .arc {
+    width: 50%;
+    aspect-ratio: 1/1.1;
+    border-radius: 50px 50px 0 0;
+    box-shadow: inset 0px 1px 0 1px rgba(0, 0, 0, 0.21), inset 0px -1px 0 1px rgba(0, 0, 0, 0.21);
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+    position: relative;
+}
+
+.sideBlock > .inner > .upper > .arc::before {
+    width: 70%;
+    aspect-ratio: 1/1.3;
+    border-radius: 50px 50px 0 0;
+    background: var(--accentGlass);
+}
+
+.sideBlock > .inner > .upper > .arc::after {
+    position: absolute;
+    width: 100%;
+    border-top: 4px solid rgba(0, 0, 0, 1);
+    background: repeating-linear-gradient(90deg, transparent 0, transparent 7px, black 7px, black 11px);
+    bottom: 0;
+    height: 15px;
+}
+
+.sideBlock > .mid > .upper {
+    display: flex;
+    flex-direction: column-reverse;
+    /*background: red;*/
+    justify-content: flex-start;
+    padding-top: 17px;
+}
+
+.sideBlock > .mid > .upper::before {
+    width: 100%;
+    background: white;
+    height: 20px;
+    box-shadow: inset 0 3px 1px -1px #00000055, 0 3px 1px -1px VAR(--plantEdge);
+}
+
+.sideBlock > .mid > .upper > .columns {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    /*background: red;*/
+}
+
+.sideBlock > .mid > .upper > .columns > .columnsLower, .sideBlock > .mid > .upper > .columns > .columnsUpper {
+    display: flex;
+}
+
+.sideBlock > .mid > .upper > .columns > .columnsUpper {
+    flex: 1;
+    justify-content: space-around;
+}
+
+.sideBlock > .mid > .upper > .columns > .columnsLower::before, .sideBlock > .mid > .upper > .columns > .columnsLower::after,
+.sideBlock > .mid > .upper > .columns > .columnsUpper::before, .sideBlock > .mid > .upper > .columns > .columnsUpper::after {
+    flex: 1;
+    height: 10px;
+    background: white;
+    box-shadow: inset -1px 0 0px #0004, inset 0 2px 1px #0004;
+    /*border-radius: 50% / 10% 10% 0 0*/
+}
+
+.sideBlock > .mid > .upper > .columns > .columnsUpper::before, .sideBlock > .mid > .upper > .columns > .columnsUpper::after {
+    height: unset;
+    flex: unset;
+    width: 45%;
+    box-shadow: 1px -1px 1px #00000044;
+}
+
+.sideBlock > .mid > .upper > .columns > .columnsLower::after, .sideBlock > .mid > .upper > .columns > .columnsUpper::after {
+    transform: scaleX(-1);
+}
+
+.sideBlock > .mid > .upper > .columns > .columnsUpper::after {
+    box-shadow: -2px -1px 1px #00000066;
+}
+
+.sideBlock > .outer > .upper {
+    /*background: red;*/
+    padding-top: 19px;
+
+}
+
+.sideBlock > .outer > .upper > .window {
+    position: relative;
+}
+
+.sideBlock > .outer > .upper > .window::before {
+    position: absolute;
+    border-radius: 50% / 100% 100% 0 0;
+    width: 100%;
+    aspect-ratio: 9/4;
+    border: 6px solid var(--plantEdge);
+    border-bottom: 0;
+    bottom: 100%;
+    background: radial-gradient(at 50% 100%, transparent 30%, rgba(0, 0, 0, 0.5) 35%, transparent 40%, transparent 50%, rgba(0, 0, 0, 0.45) 55%, transparent 60%);
+    box-shadow: inset 0 -1px 1px #0005;
+}
+
+.sideBlock > .outer > .upper .windowMid {
+    width: 55px;
+    aspect-ratio: 1/1;
+    /*border: 1px solid;*/
+    display: flex;
+    justify-content: center;
+    box-shadow: inset 0 -2px 1px -1px var(--plantEdge);
+}
+
+.sideBlock > .outer > .upper .windowInner {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex: 1;
+}
+
+.sideBlock > .outer > .upper .windowInnerFrame {
+    width: 90%;
+    aspect-ratio: 1/1.35;
+    box-shadow: inset 1px 1px 1px #0004;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.sideBlock > .outer > .upper .windowInnerFrame::before {
+    width: 80%;
+    aspect-ratio: 1/1.55;
+    background: var(--accentGlass);
+    border-radius: 50% / 15% 15% 0 0;
+    box-shadow: inset 3px 3px 1px #0008;
+
+}
+
+.sideBlock > .outer > .upper .windowMid::before, .sideBlock > .outer > .upper .windowMid::after {
+    width: 6px;
+    height: 100%;
+    background: repeating-linear-gradient(20deg, transparent 0, transparent 5px, rgba(0, 0, 0, 0.36) 5px, rgba(0, 0, 0, 0.36) 6px), #f3f3f3;
+}
+
+.sideLowerDome {
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+    width: 100px;
+}
+
+.sideLowerDome {
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+    width: 100px;
+}
+
+.sideBlock .lower {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.sideBlock .lower::before {
+    --stripe: #797979;
+    width: 100%;
+    height: 15px;
+    background: repeating-linear-gradient(var(--stripe) 0px, var(--stripe) 2px, transparent 2px, transparent 3px), gray;
+}
+
+.sideLowerDome {
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+    width: 100px;
+}
+
+.sideLowerDome > .mid {
+    width: 100%;
+    height: 45px;
+    border-radius: 50% / 10% 10% 0 0;
+    background: linear-gradient(90deg, #f8f8f8, #eeeeee);
+}
+
+.sideLowerDome > .top {
+    width: 105%;
+    aspect-ratio: 4/1;
+    border-radius: 50% / 90% 90% 10% 10%;
+    background: #3d9a6c;
+    position: relative;
+    top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.sideLowerDome > .top::before {
+    position: absolute;
+    background: inherit;
+    width: 20px;
+    aspect-ratio: 4/3;
+    top: -8px;
+    clip-path: polygon(45% 0, 55% 0, 60% 30%, 100% 90%, 0% 90%, 40% 30%);
+}
+
+.sideLowerDome > .top::after {
+    position: absolute;
+    top: -10px;
+    width: 5px;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    background: inherit;
+}

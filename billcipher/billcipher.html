@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="billcipher.css">
+    <title>Bill Cipher</title>
+</head>
+<body>
+<audio class="bg_audio" src="mus_zzz_c.ogg" autoplay loop></audio>
+<audio class="bg_scare" src="mus_zzz_c2.ogg"></audio>
+<audio class="scare_sound" src="jumpscare.mp3"></audio>
+<div class="canvas">
+    <div class="billcipher hover">
+        <div class="bill_triangle">
+            <div class="bill_triangle_inner">
+                <div class="brick_row">
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                </div>
+                <div class="brick_row">
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                </div>
+                <div class="brick_row">
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                    <div class="brick"></div>
+                </div>
+            </div>
+            <div class="eye_container">
+                <div class="eye">
+                    <div class="eyelash"></div>
+                    <div class="eyelash"></div>
+                    <div class="eyelash eyelash_2"></div>
+                    <div class="eyelash eyelash_2"></div>
+                    <div class="eyelash eyelash_2"></div>
+                    <div class="eyelash eyelash_2"></div>
+                    <div class="eyeball">
+                        <div class="slit"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bowtie_container">
+                <div class="bowtie"></div>
+            </div>
+        </div>
+        <div class="bill_legs">
+            <div class="leg"></div>
+            <div class="leg"></div>
+        </div>
+        <div class="bill_hands">
+            <div class="hand"></div>
+            <div class="hand"></div>
+        </div>
+        <div class="fire_container">
+            <div class="fire">
+                <div class="flame"></div>
+                <div class="flame subflame subflame_1"></div>
+                <div class="flame subflame subflame_2"></div>
+            </div>
+            <div class="fire">
+                <div class="flame"></div>
+                <div class="flame subflame subflame_1"></div>
+                <div class="flame subflame subflame_2"></div>
+            </div>
+        </div>
+        <div class="hat"></div>
+    </div>
+</div>
+</body>
+<script>
+    function delay(seconds) {
+        return new Promise((r) => {
+            setTimeout(r, seconds * 1000);
+        })
+    }
+
+    async function phase1() {
+        return await new Promise(async resolve => {
+            const BILL = document.querySelector(".billcipher");
+            const BG = document.querySelector("body");
+            const SCARE_AUDIO = document.querySelector(".bg_scare");
+            let end = 0;
+            while (true) {
+                BILL.classList.toggle("angry");
+                if (BILL.classList.contains("angry")) {
+                    BG.classList.remove("flash");
+                } else {
+                    BG.classList.add("flash");
+                }
+                await delay(0.1);
+                SCARE_AUDIO.addEventListener("ended", () => {
+                    end = 1;
+                });
+                if (end === 1) {
+                    resolve();
+                    break;
+                }
+            }
+        });
+    }
+    const BG_AUDIO = document.querySelector(".bg_audio");
+    async function animate() {
+        const BILL = document.querySelector(".billcipher");
+        const BG = document.querySelector("body");
+
+        const SCARE_AUDIO = document.querySelector(".bg_scare");
+        const SCARE_AUDIO_2 = document.querySelector(".scare_sound");
+        BG_AUDIO.pause();
+        SCARE_AUDIO.play();
+        BILL.classList.add("expand");
+        await phase1();
+        // BILL.classList.add("angry");
+        BILL.classList.add("scare");
+        BILL.classList.add("no_slit");
+        SCARE_AUDIO_2.play();
+        // BILL.classList.remove("expand");
+        // await delay(0.05);
+        BILL.classList.remove("angry");
+        await delay(1);
+
+        BILL.style.display = "none";
+    }
+    const _ = ()=> {
+        BG_AUDIO.play();
+        window.removeEventListener("click", _);
+    };
+    window.addEventListener("click", _);
+    document.querySelector(".eyeball").addEventListener("click", animate);
+
+</script>
+</html>

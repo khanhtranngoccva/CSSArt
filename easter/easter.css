@@ -1,0 +1,148 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: #8dc599;
+    margin: 0;
+}
+
+.canvas {
+    /*background: cyan;*/
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, auto);
+}
+
+@keyframes bounce {
+    0% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(0.9) scaleX(1.05);
+    }
+}
+
+@keyframes bounce2 {
+    0% {
+        transform: scaleY(1) translateY(-20px);
+        /*animation-timing-function: ease-out;*/
+    }
+
+    50% {
+        transform: scaleY(0.9) scaleX(1.05);
+        /*animation-timing-function: ease-in;*/
+    }
+}
+
+.egg {
+    width: 200px;
+    aspect-ratio: 4/5;
+    border-radius: 50% / 55% 55% 45% 45%;
+    background: pink;
+    transform-origin: 50% 100%;
+    animation: bounce 0.5s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.egg1 {
+    --color1: #ffe8eb;
+    --color2: #ffccd5;
+    --offset1: 5%;
+    --offset2: 5%;
+    --offsetX: 500px;
+    --offsetY: 500px;
+    background: repeating-radial-gradient(at var(--offsetX) var(--offsetY), var(--color1) 0, var(--color1) var(--offset1), var(--color2) var(--offset1), var(--color2) calc(var(--offset1) + var(--offset2)));
+}
+
+.egg2 {
+    --color1: #99ffcc;
+    --color2: #74eaae;
+    --color3: #6ee0a4;
+    --color4: #61e0a0;
+    --offset1: 25px;
+    --offset2: 4px;
+    --offset3: 25px;
+    --offset4: 4px;
+    --offsetX: 50%;
+    --offsetY: -200px;
+    background: repeating-radial-gradient(circle at var(--offsetX) var(--offsetY),
+    var(--color1) 0, var(--color1) var(--offset1),
+    var(--color2) var(--offset1),
+    var(--color2) calc(var(--offset1) + var(--offset2)),
+    var(--color3) calc(var(--offset1) + var(--offset2)),
+    var(--color3) calc(var(--offset1) + var(--offset2) + var(--offset3)),
+    var(--color4) calc(var(--offset1) + var(--offset2) + var(--offset3)),
+    var(--color4) calc(var(--offset1) + var(--offset2) + var(--offset3) + var(--offset4)));
+
+}
+
+.egg3 {
+    background: #ffdd00;
+}
+
+.egg3:before {
+    font-size: 100px;
+    color: transparent;
+    content: "oooooooooooooooooooo ooooooooooooooo";
+    width: 150%;
+    position: absolute;
+    top: -50px;
+    /*left: -30px;*/
+    text-decoration: underline wavy #fffcea 15px;
+}
+
+.egg3:after {
+    font-size: 107px;
+    color: transparent;
+    content: "This is an easter egg";
+    width: 2000px;
+    position: absolute;
+    /*left: -0px;*/
+    text-decoration: underline wavy #fff1ad 15px;
+}
+
+.egg4 {
+    --offset: 8%;
+    background: repeating-radial-gradient(circle at 50% -105%, #ff7878 0, #ff7878 calc(var(--offset)),
+    orange calc(var(--offset)), orange calc(2 * var(--offset)),
+    yellow calc(2 * var(--offset)), yellow calc(3 * var(--offset)),
+    lightgreen calc(3 * var(--offset)), lightgreen calc(4 * var(--offset)),
+    #5bafff calc(4 * var(--offset)), #5bafff calc(5 * var(--offset)),
+    mediumpurple calc(5 * var(--offset)), mediumpurple calc(6 * var(--offset)));
+    background-size: 160% 100%;
+    background-position: 50% 0;
+}
+
+.egg5 {
+    --offset: 10%;
+    background: repeating-radial-gradient(circle at 50% -98%, #5bcefa 0, #5bcefa calc(var(--offset)),
+    #f5a988 calc(var(--offset)), #f5a988 calc(2 * var(--offset)),
+    white calc(2 * var(--offset)), white calc(3 * var(--offset)),
+    #f5a988 calc(3 * var(--offset)), #f5a988 calc(4 * var(--offset)),
+    #5bcefa calc(4 * var(--offset)), #5bcefa calc(5 * var(--offset)));
+}
+
+.egg:nth-of-type(2n) {
+    animation: bounce2 0.5s infinite ease-in-out;
+    animation-delay: -0.25s;
+    transform-origin: 50% 100%;
+    transform: scaleY(1) translateY(-20px);
+}
+
+.egg6 {
+    --offset1: 40%;
+    background: radial-gradient(circle, white 0%, white var(--offset1), transparent var(--offset1)), #ff7474;
+    background-size: 50px 50px;
+}

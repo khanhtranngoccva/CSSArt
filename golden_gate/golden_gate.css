@@ -1,0 +1,316 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to top right, blue, #00c4ff);
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /*position: fixed;*/
+    display: flex;
+    margin: 0;
+}
+
+.canvas {
+    padding: 200px;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.golden_gate {
+    transform-style: preserve-3d;
+    position: relative;
+    --color: #ff1e00;
+    --rotate_offset: 20deg;
+    transform:scale(1.3) scaleX(0.8) skewY(var(--rotate_offset));
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.13));
+    /*transform: perspective(200px) rotateY(20deg);*/
+}
+
+.golden_gate_overlay {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+.bridge_center {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    /*background: #00000022;*/
+}
+
+.bridge_center_cables, .bridge_side_cables {
+    display: flex;
+    height: 200px;
+    justify-content: space-evenly;
+    overflow: hidden;
+    position: relative;
+    /*display: none;*/
+    /*visibility: hidden;*/
+}
+
+.lateral_center_cable, .lateral_side_cable {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 102%;
+    height: 90%;
+    border: 5px solid var(--color);
+    transform: translate(-50%);
+    border-top: 0;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+.vertical_cable {
+    width: 3px;
+    height: 100%;
+    background: var(--color);
+    position: relative;
+    transform: skewY(calc(0deg - var(--rotate_offset)));
+
+}
+
+.bridge_post {
+    --track: rgba(183, 183, 183, 0.56);
+    border-block: 4px solid var(--color);
+    --offset1: 2px;
+    --offset2: 12px;
+    background: repeating-linear-gradient(60deg, var(--color) 0, var(--color) var(--offset1), transparent var(--offset1), transparent calc(var(--offset1) + var(--offset2))), repeating-linear-gradient(-60deg, var(--color) 0, var(--color) var(--offset1), transparent var(--offset1), transparent calc(var(--offset1) + var(--offset2)));
+    /*background: var(--color);*/
+    /*box-shadow: 0 -5px 0px #f33700;*/
+    /*height: 20px;*/
+    height: 20px;
+}
+
+.bridge_column {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 20px;
+    align-items: center;
+    position: relative;
+    transform: skewY(calc(0deg - var(--rotate_offset)));
+    /*transform: perspective(200px) rotateY(12deg);*/
+    /*border: 4px solid red;*/
+    /*background: var(--color);*/
+}
+
+.bridge_column_top, .bridge_column_middle, .bridge_column_lower, .bridge_column_bottom {
+    flex: 1;
+    background: var(--color);
+    box-shadow: 0 -2px 0 3px #f33700;
+    border-radius: 10%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50% / 4% 5% 5% 4%;
+}
+
+.bridge_column_top::before, .bridge_column_middle::before, .bridge_column_lower::before, .bridge_column_bottom::before {
+    content: "";
+    background: var(--color);
+    width: 60%;
+    left: 20%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    filter: brightness(1.5);
+}
+
+.bridge_column_top::after, .bridge_column_middle::after, .bridge_column_lower::after, .bridge_column_bottom::after {
+    content: "";
+    background: var(--color);
+    width: 30%;
+    left: 35%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    filter: brightness(2);
+}
+
+.bridge_column_top {
+    width: 100%;
+    z-index: 3;
+
+}
+.bridge_column_middle {
+    width: 115%;
+    z-index: 2;
+}
+.bridge_column_lower {
+    width: 130%;
+    z-index: 1;
+}
+.bridge_column_bottom {
+    flex: 1.5;
+    z-index: 0;
+    width: 145%;
+    /*border-radius: 0 0 50% 50% / 0 0 10% 8%;*/
+    overflow: hidden;
+}
+
+.bridge_side {
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+}
+
+.bridge_side_cables {
+    position: relative;
+}
+
+.lateral_side_cable {
+    border-radius: 0 0 100%;
+    border-left: 0;
+    height: 100%;
+}
+
+.bridge_side.right {
+    transform: scaleX(-1);
+}
+
+.static_layer {
+    position: relative;
+    z-index: 2;
+    /*filter: brightness(1.2);*/
+}
+
+.nudge_layer {
+    /*display: none;*/
+    position: absolute;
+    z-index: 0;
+    top: -80px;
+    right: -80px;
+    filter: brightness(1);
+}
+
+
+.road {
+    position: absolute;
+    width: 100%;
+    height: 120px;
+    background: gray;
+    top: 83px;
+    transform-origin: 0% 100%;
+    transform: skewX(-45deg) scaleY(0.6666);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /*padding: 20px;*/
+    /*column-gap: 50px;*/
+}
+
+.road_mark {
+    /*border-radius: 20px;*/
+    flex: 1;
+    background: white;
+    height: 2px;
+}
+
+.bridge_column_perp {
+    position: absolute;
+    left: 5px;
+    width: 120px;
+    /*background: var(--color);*/
+    transform-origin: 0 0;
+    height: 200px;
+    transform: scaleX(0.7) skewY(-25deg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+    filter: brightness(0.9);
+}
+
+.bridge_column_perp:before, .bridge_column_perp:after {
+    height: 100%;
+    width: 10%;
+    content: "";
+    background: var(--color);
+    position: absolute;
+    right: 0;
+}
+
+.bridge_column_perp:before {
+    left: 0
+}
+
+.bridge_column_perp .tile {
+    flex: 1;
+    width: 120%;
+    border: 10px solid var(--color);
+    border-radius: 90px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bridge_column_perp .tile:last-of-type {
+    border-bottom: 0;
+}
+
+.bridge_column_perp .tile:first-of-type {
+    border-top: 20px solid var(--color);
+}
+
+.mount1 {
+    background: #22ab22;
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 100% 0 0 0 / 100% 0 0 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.mount2 {
+    background: #42af42;
+    position: fixed;
+    width: 600px;
+    height: 200px;
+    border-radius: 100% 0 0 0 / 100% 0 0 0;
+    bottom: 0;
+    right: 200px;
+}
+
+.cloud1 {
+    background: white;
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 0 0 100% 0;
+    top: 0;
+    left: 0;
+    filter: drop-shadow(2px 2px 5px white);
+}
+
+.cloud1:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 470px;
+    height: 470px;
+    top: -50px;
+    left: -50px;
+    background: white;
+    border-radius: 50%;
+}
+
+
+/*.cloud1:after {*/
+/*    content: "";*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    width: 200px;*/
+/*    height: 200px;*/
+/*    top: 200px;*/
+/*    left: 100px;*/
+/*    background: white;*/
+/*    border-radius: 50%;*/
+/*}*/

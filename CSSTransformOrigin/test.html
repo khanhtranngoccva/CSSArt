@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            /*justify-content: center;*/
+            /*align-items: center;*/
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            background: #201f1D;
+            position: fixed;
+            font-size:2rem;
+            color: white;
+            font-family: "Product Sans", sans-serif;
+            font-weight: 600;
+            text-align: center;
+            /*justify-content: center;*/
+        }
+
+        .gallery {
+            /*padding-top: 160px;*/
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /*grid-auto-rows: auto;*/
+            grid-gap: 50px 40px;
+            margin: auto;
+            width: 90%;
+            place-items: center;
+        }
+
+        strong {
+            color: #ff7979;
+        }
+
+        .image_container {
+            width: 240px;
+            height: 180px;
+            position: relative;
+        }
+
+        .rotate {
+            width: 100%;
+            aspect-ratio: 4/3;
+            border: 1px solid gold;
+            border-radius: 10px;
+            animation: spin 2s ease-in-out infinite;
+            overflow: hidden;
+            opacity: 1;
+            transform: rotate(10deg);
+            filter: brightness(1.2);
+        }
+
+        .crosshair {
+            display: flex;
+            width: 30px;
+            aspect-ratio: 1/1;
+            --color: #2fff00;
+            border: 2px solid var(--color);
+            filter: drop-shadow(0 0 2px var(--color)) drop-shadow(0 0 2px var(--color));
+            z-index: 1;
+            position: absolute;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            transform: translate(-50%, -50%);
+        }
+
+        .crosshair:before, .crosshair:after {
+            content: "";
+            display: block;
+            width: 2px;
+            height: 150%;
+            position: absolute;
+            background: var(--color);
+        }
+
+        .crosshair:after {
+            transform: rotate(90deg);
+        }
+
+
+        @keyframes spin {
+            0% {
+                transform: rotate(10deg);
+            }
+            50% {
+                transform: rotate(-10deg);
+            }
+        }
+
+
+
+    </style>
+    <title>Rotation</title>
+</head>
+<body>
+<h1>CSS <strong>transform-origin</strong> property!</h1>
+<div class="gallery">
+    <div class="image_container">
+        <img class="rotate" src="img_2.png">
+        <div class="crosshair"></div>
+    </div>
+    <div class="image_container">
+        <img class="rotate" src="img_2.png">
+        <div class="crosshair "></div>
+    </div>
+    <div class="image_container">
+        <img class="rotate" src="img_2.png">
+        <div class="crosshair"></div>
+    </div>
+    <span><strong>transform-origin</strong>: 0% 0%</span><span><strong>transform-origin</strong>: 50% 0%</span><span><strong>transform-origin</strong>: 100% 0%</span>
+    <div class="image_container">
+        <img class="rotate" src="img_2.png">
+        <div class="crosshair"></div>
+    </div>
+    <div class="image_container" >
+        <img class="rotate" src="img_2.png">
+        <div class="crosshair " style="--color: #ff32f5"></div>
+    </div>
+    <div class="image_container">
+        <img class="rotate" src="img_2.png">
+        <div class="crosshair"></div>
+    </div>
+    <span><strong>transform-origin</strong>: 0% 50%</span><span><strong>transform-origin</strong>: 50% 50%</span><span><strong>transform-origin</strong>: 100% 50%</span>
+    <div class="image_container">
+        <img class="rotate" src="img_2.png">
+        <div class="crosshair"></div>
+    </div>
+    <div class="image_container">
+        <img class="rotate" src="img_2.png">
+        <div class="crosshair "></div>
+    </div>
+    <div class="image_container">
+        <img class="rotate" src="img_2.png">
+        <div class="crosshair"></div>
+    </div>
+    <span><strong>transform-origin</strong>: 0% 100%</span><span><strong>transform-origin</strong>: 50% 100%</span><span><strong>transform-origin</strong>: 100% 100%</span>
+
+</div>
+</body>
+<script>
+    let array = [
+        ["0%", "0%"],
+        ["50%", "0%"],
+        ["100%", "0%"],
+        ["0%", "50%"],
+        ["50%", "50%"],
+        ["100%", "50%"],
+        ["0%", "100%"],
+        ["50%", "100%"],
+        ["100%", "100%"]
+    ];
+    document.querySelectorAll(".image_container").forEach((container, index) => {
+        const horizontal = array[index][0];
+        const vertical = array[index][1];
+        container.querySelector(".rotate").style.transformOrigin = `${horizontal} ${vertical}`;
+        container.querySelector(".crosshair").style.top = vertical;
+        container.querySelector(".crosshair").style.left = horizontal;
+    })
+</script>
+</html>

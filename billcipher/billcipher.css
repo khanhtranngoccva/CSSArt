@@ -1,0 +1,485 @@
+* {
+    box-sizing: border-box;
+    /*transition: all 0.5s ease-in-out;*/
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #090909;
+}
+
+.canvas {
+    width: 600px;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.billcipher {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: transform 0.25s ease;
+    position: relative;
+    transform-origin: 50% 37%;
+    will-change: transform;
+}
+
+.bill_triangle {
+    width: 80%;
+    aspect-ratio: 1/0.86602540;
+    position: relative;
+    filter: drop-shadow(-3px -3px #dab700) drop-shadow(-2px -2px #dab700) drop-shadow(-1px -1px #dab700) drop-shadow(0 0 50px gold);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bill_triangle_inner {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: gold;
+    clip-path: polygon(49% 1%, 49.5% 0.6%, 50% 0.5%, 50.5% 0.6%, 51% 1%,
+    97.3% 97.3%, 97.5% 98%, 97.5% 99%, 97% 99.7%, 96% 100%,
+    4% 100%, 3% 99.7%, 2.5% 99%, 2.5% 98%, 2.7% 97.3%);
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    filter: brightness(1.2);
+}
+
+.brick_row {
+    width: 120%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.brick_row:nth-of-type(2n) {
+    position: relative;
+    left: 12%;
+}
+
+.brick {
+    padding: 0.4% 0.3% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    background: #dab700;
+}
+
+.brick::before {
+    width: 100%;
+    height: 100%;
+    content: "";
+    display: block;
+    background: gold;
+}
+
+.brick_row:nth-of-type(2n) {
+    background-position: 12.5% 0%;
+}
+
+.eye_container {
+    width: 100%;
+    flex: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    /*background: #00000022;*/
+    padding-top: 20%;
+}
+
+.bowtie_container {
+    width: 100%;
+    flex: 2.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background: #ff000022;*/
+    z-index: 1;
+}
+
+.eye {
+    width: 30%;
+    height: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: transform 0.05s ease-in;
+}
+
+
+.eyeball {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: 3px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slit {
+    width: 15%;
+    height: 65%;
+    background: black;
+    border-radius: 50%;
+}
+
+.eyelash {
+    position: absolute;
+    height: 150%;
+    width: 3%;
+    background: black;
+    border-radius: 20px;
+    transform: rotate(18deg);
+    z-index: -2;
+}
+
+.eyelash:nth-of-type(2) {
+    transform: rotate(-18deg);
+}
+
+.eyelash_2 {
+    height: 158%;
+}
+
+.eyelash:nth-of-type(3) {
+    transform: translateX(250%) rotate(40deg);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+}
+
+.eyelash:nth-of-type(4) {
+    transform: translateX(-250%) rotate(-40deg);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+}
+
+.eyelash:nth-of-type(5) {
+    transform: translateX(250%) rotate(140deg);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+}
+
+.eyelash:nth-of-type(6) {
+    transform: translateX(-250%) rotate(-140deg);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+}
+
+.bill_legs {
+    width: 80%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    column-gap: 10%;
+    filter: drop-shadow(0 0 3px gold);
+    z-index: -1;
+}
+
+.leg {
+    width: 15%;
+    height: 100%;
+    border: 10px solid transparent;
+    border-radius: 50% 20% 50% 50%;
+    border-bottom: 25px solid black;
+    border-left: 25px solid black;
+    position: relative;
+    top: -15%;
+    z-index: -1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.leg:before {
+    width: 50%;
+    aspect-ratio: 1/3;
+    background: black;
+    content: "";
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    top: 48%;
+    left: 20%;
+}
+
+
+.leg:nth-of-type(2) {
+    transform: scale(-1, 1);
+}
+
+.bowtie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 10%;
+}
+
+.bowtie:before, .bowtie:after {
+    flex: 1;
+    aspect-ratio: 0.86602540/1;
+    background: black;
+    content: "";
+    display: block;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+
+.bowtie:after {
+    transform: rotate(180deg);
+}
+
+.bill_hands {
+    display: flex;
+    justify-content: center;
+    column-gap: 37%;
+    z-index: -1;
+    width: 120%;
+    height: 30%;
+    position: absolute;
+    align-items: center;
+    filter: drop-shadow(0 0 3px gold);
+}
+
+.hand {
+    width: 20%;
+    aspect-ratio: 2/1;
+    padding: 2%;
+    /*background: black;*/
+    position: relative;
+    border: 10px solid transparent;
+    border-left: 20px solid black;
+    border-bottom: 15px solid black;
+    border-radius: 50%;
+}
+
+.hand:after {
+    width: 100%;
+    height: 100%;
+    content: "";
+    display: block;
+    border-radius: 10% 50% 10% 50%;
+}
+
+.hand::before {
+    width: 50%;
+    aspect-ratio: 3/1;
+    background: black;
+    content: "";
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: -10%;
+    left: -35%;
+}
+
+.hand:nth-of-type(2) {
+    transform: scale(-1, 1);
+}
+
+.fire_container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    column-gap: 54%;
+    z-index: -1;
+    width: 120%;
+    height: 50%;
+    align-items: center;
+}
+
+.fire {
+    position: relative;
+    top: -40%;
+    width: 20%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+.flame {
+    width: 70%;
+    aspect-ratio: 1/1;
+    background: cyan;
+    transform: scale(0.9, 1) rotate(45deg);
+    border-radius: 0 40% 60% 40%;
+    z-index: 2;
+    filter: drop-shadow(0 0 20px cyan) blur(1px);
+    animation: flicker 2s infinite;
+}
+
+.subflame {
+    width: 60%;
+    position: absolute;
+    background: #00d2d2;
+    z-index: 1;
+}
+
+.subflame_1 {
+    left: 45%;
+    animation-delay: -0.5s;
+}
+
+.subflame_2 {
+    right: 45%;
+    animation-delay: -1s;
+}
+
+@keyframes flicker {
+    0% {
+        transform: scale(0.9, 1) rotate(45deg);
+    }
+
+    25% {
+        transform: scale(0.9, 1.02) rotate(48deg);
+    }
+
+    75% {
+        transform: scale(0.9, 1) rotate(42deg);
+    }
+
+    100% {
+        transform: scale(0.9, 1) rotate(45deg);
+    }
+}
+
+.hat {
+    width: 20%;
+    height: 30%;
+    /*border: 1px solid red;*/
+    position: absolute;
+    top: -27.5%;
+    filter: drop-shadow(0px 0px 30px gold) drop-shadow(0px 0px 40px gold);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.hat::before, .hat::after {
+    content: "";
+    display: block;
+}
+
+.hat:before {
+    background: black;
+    flex: 8;
+    width: 30%;
+}
+
+.hat:after {
+    flex: 2;
+    width: 100%;
+    background: black;
+}
+
+.hover {
+    transform: translateY(0);
+    animation: hover 3s ease-in-out infinite;
+}
+
+@keyframes hover {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(5%);
+    }
+}
+
+
+
+.angry .brick {
+    background: white;
+}
+
+.angry .brick:before {
+    background: red;
+}
+
+.angry .bill_triangle_inner {
+    background: red;
+}
+
+.angry .eye {
+    height: 50%;
+}
+
+.angry .eyeball {
+    background: black;
+}
+
+.angry .eyeball .slit {
+    background: white;
+}
+
+.angry .bill_triangle {
+    filter: drop-shadow(-3px -3px #a40000) drop-shadow(-2px -2px #a40000) drop-shadow(-1px -1px #a40000) drop-shadow(0 0 50px red);
+}
+
+.angry .hat {
+    filter: drop-shadow(0px 0px 60px red) drop-shadow(0px 0px 20px red);
+}
+
+.angry .bill_hands, .angry .bill_legs {
+    filter: drop-shadow(0 0 10px red);
+}
+
+.flash {
+    background: #9f0000;
+}
+
+.expand {
+    animation: grow 6s forwards linear;
+}
+
+.scare {
+    animation: scare 1s forwards linear;
+}
+
+.no_slit .slit {
+    opacity: 0;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+@keyframes scare {
+    0% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(30);
+    }
+}

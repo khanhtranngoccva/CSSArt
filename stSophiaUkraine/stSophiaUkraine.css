@@ -35,9 +35,26 @@ body *::before, body *::after {
 }
 
 .ground {
-    background: #ff6d6d;
-    height: 100px;
     width: 100%;
+    background: #38bb38;
+    height: 100px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    transform-origin: 50% 0;
+    transform: perspective(100px) rotateX(20deg);
+}
+
+.ground::after {
+    height: 100%;
+    width: 200px;
+    background: var(--accentRed);
+}
+
+.ground::before {
+    height: 20px;
+    width: 100%;
+    background: var(--accentRed);
 }
 
 .nonGround {
@@ -47,6 +64,8 @@ body *::before, body *::after {
     justify-content: center;
     align-items: flex-end;
     width: 5000px;
+    position: relative;
+    z-index: 0;
 }
 
 .centerBlock {
@@ -66,6 +85,7 @@ body *::before, body *::after {
 .centerBlockBottomSegment {
     display: flex;
     justify-content: center;
+    z-index: 1;
 }
 
 .centerBlockBottomSegmentWall {
@@ -75,6 +95,7 @@ body *::before, body *::after {
     width: 60px;
     height: 275px;
     position: relative;
+    transform-style: preserve-3d;
 }
 
 .centerBlockBottomSegmentWall:first-of-type {
@@ -98,12 +119,12 @@ body *::before, body *::after {
 
 .centerBlockBottomSegmentWall:nth-of-type(5) {
     transform-origin: 0% 100%;
-    transform: perspective(100px) rotateY(9deg) scaleY(0.98) scaleX(0.8);
+    transform: perspective(100px) rotateY(9deg) translateX(80%) scaleY(0.98) scaleX(0.8) scaleX(-1);
 }
 
 .centerBlockBottomSegmentWall > .bottom {
     --stripe: #797979;
-    height: 20px;
+    height: 16px;
     background: repeating-linear-gradient(var(--stripe) 0px, var(--stripe) 2px, transparent 2px, transparent 3px), gray;
 }
 
@@ -498,6 +519,7 @@ body *::before, body *::after {
     position: relative;
     background: gold;
     top: 50px;
+    z-index: 0;
 }
 
 .cross::before {
@@ -580,7 +602,7 @@ body *::before, body *::after {
 
 
 .sideBlock {
-    width: 300px;
+    width: 330px;
     height: 240px;
     background: white;
     position: relative;
@@ -729,7 +751,7 @@ body *::before, body *::after {
 }
 
 .sideBlock > .inner {
-    width: 100px;
+    width: 120px;
 }
 
 .sideBlock > .mid {
@@ -779,8 +801,8 @@ body *::before, body *::after {
 .sideBlock > .inner > .upper > .arc::after {
     position: absolute;
     width: 100%;
-    border-top: 4px solid rgba(0, 0, 0, 1);
-    background: repeating-linear-gradient(90deg, transparent 0, transparent 7px, black 7px, black 11px);
+    border-top: 4px solid rgba(0, 0, 0, 0.55);
+    background: repeating-linear-gradient(90deg, transparent 0, transparent 7px, rgba(0, 0, 0, 0.63) 7px, rgba(0, 0, 0, 0.7) 11px);
     bottom: 0;
     height: 15px;
 }
@@ -894,7 +916,6 @@ body *::before, body *::after {
     background: var(--accentGlass);
     border-radius: 50% / 15% 15% 0 0;
     box-shadow: inset 3px 3px 1px #0008;
-
 }
 
 .sideBlock > .outer > .upper .windowMid::before, .sideBlock > .outer > .upper .windowMid::after {
@@ -920,15 +941,22 @@ body *::before, body *::after {
 .sideBlock .lower {
     width: 100%;
     display: flex;
-    flex-direction: column-reverse;
+    /*flex-direction: column-reverse;*/
     justify-content: flex-start;
-    align-items: flex-start;
+    align-content: flex-end;
+    align-items: flex-end;
 }
 
-.sideBlock .lower::before {
+.sideBlock > .outer > .lower, .sideBlock > .inner > .lower {
+    flex-flow: wrap;
+    z-index: 0;
+    justify-content: center;
+}
+
+.sideBlock .lower::after {
     --stripe: #797979;
     width: 100%;
-    height: 15px;
+    height: 12px;
     background: repeating-linear-gradient(var(--stripe) 0px, var(--stripe) 2px, transparent 2px, transparent 3px), gray;
 }
 
@@ -941,9 +969,13 @@ body *::before, body *::after {
 
 .sideLowerDome > .mid {
     width: 100%;
-    height: 45px;
+    height: 50px;
     border-radius: 50% / 10% 10% 0 0;
-    background: linear-gradient(90deg, #f8f8f8, #eeeeee);
+    background: linear-gradient(90deg, #f8f8f8, #fcfcfc);
+    /*background: white;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sideLowerDome > .top {
@@ -952,7 +984,7 @@ body *::before, body *::after {
     border-radius: 50% / 90% 90% 10% 10%;
     background: #3d9a6c;
     position: relative;
-    top: 10%;
+    top: 2px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -974,4 +1006,253 @@ body *::before, body *::after {
     border-radius: 50%;
     aspect-ratio: 1/1;
     background: inherit;
+}
+
+.sideLowerDome > .mid > .arc {
+    width: 30px;
+    aspect-ratio: 1/1;
+    background: #efefef;
+    border-radius: 50% / 10px 10px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    box-shadow: inset 2px 2px rgba(0, 0, 0, 0.35);
+}
+
+.sideLowerDome .arc::before {
+    width: 70%;
+    height: 85%;
+    border-radius: 10px 10px 0 0;
+    background: var(--accentGlass);
+}
+
+.sideLowerStructure {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    background: #f8f8f8;
+    position: relative;
+    z-index: -1;
+}
+
+.sideLowerStructure::before {
+    position: absolute;
+    bottom: 100%;
+    right: 00%;
+    width: 120%;
+    height: 10px;
+    transform-origin: 100% 100%;
+    transform: skewX(-30deg);
+    background: var(--plantEdge);
+}
+
+.sideLowerStructureEdge {
+    position: absolute;
+    left: 100%;
+    height: 100%;
+    width: 10px;
+    background: #f8f8f8;
+    filter: brightness(0.9);
+}
+
+.sideLowerStructureEdge::before {
+    position: absolute;
+    bottom: 100%;
+    right: 0%;
+    width: 120%;
+    height: 10px;
+    transform-origin: 100% 100%;
+    transform: skewX(-35deg);
+    background: var(--plantEdge);
+    clip-path: polygon(0 0,  100% 100%, 0 100%);
+}
+
+.sideBlock > .inner > .lower > .sideLowerDome {
+    position: relative;
+    left: -5px;
+}
+
+.outerTower {
+    position: absolute;
+    bottom: 210px;
+    left: calc(50% - 400px);
+    transform: scale(0.9) translate(-50%);
+    z-index: -1;
+}
+
+.outerTower:last-of-type {
+    left: calc(50% + 380px);
+    transform: scale(0.9) translate(-50%);
+}
+
+.outerTower .centerBlockTopSideSegmentBottomWall {
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+}
+
+.outerTower .centerBlockTopSegmentTop {
+    transform-origin: 50% 100%;
+    transform: scale(1.1);
+}
+
+.outerTower .centerBlockTopSideSegmentBottomWall .arc {
+    width: 56%;
+    aspect-ratio: 1/1.8;
+}
+
+.outerTower .centerBlockTopSideSegmentBottomWall .arc::before {
+    aspect-ratio: 1/2;
+}
+
+.centerBlockBottomSegmentWall > .side {
+    width: 80px;
+    height: 155px;
+    background: #fcfcfc;
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    transform-style: preserve-3d;
+    transform-origin: 100% 100%;
+    transform: perspective(100px) rotateY(1deg);
+    box-shadow: inset -3px 0 var(--plantEdge);
+}
+
+.centerBlockBottomSegmentWall > .side::before {
+    display: block;
+    position: absolute;
+    right: 100%;
+    height: 100%;
+    width: 10px;
+    background: #f3f3f3;
+    transform-origin: 100% 100%;
+    transform: rotateY(5deg);
+}
+
+.centerBlockBottomSegmentWall > .side::after {
+    display: block;
+    position: absolute;
+    /*right: 100%;*/
+    bottom: 100%;
+    height: 3px;
+    width: 100%;
+    background: var(--plantEdge);
+    transform-origin: 0% 100%;
+    transform: skewX(77deg);
+}
+
+
+.centerBlockBottomSegmentWall .side2 {
+    transform: perspective(100px) rotateY(1deg);
+    left: -30px;
+}
+
+.centerBlockBottomSegmentWall .side2::before {
+    width: 12px;
+}
+
+
+.flag {
+    position: absolute;
+    left: calc(50% + 2.5px);
+    z-index: -20;
+    height: 150px;
+    top: -120px;
+    filter: drop-shadow(0 0 1px #0005);
+}
+
+.flag > .flag_inner {
+    margin-left: 0;
+    /*position: absolute;*/
+    /*--delay: 0s;*/
+}
+
+.flag:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -5px;
+    z-index: -5;
+    width: 3px;
+    height: 300px;
+    background: gray;
+
+}
+
+.flag_inner {
+    /*--delay: calc(var(--delay) + 0.3s);*/
+    height: 100%;
+    display: flex;
+    perspective: 300px;
+    perspective-origin: 50% 80%;
+    transform-origin: 0% 50%;
+    transform-style: preserve-3d;
+    transform: rotateY(3deg);
+    position: relative;
+
+
+    box-sizing: border-box;
+    animation: flutter 2.4s ease-in-out forwards infinite;
+    left: -3px;
+}
+
+.flag_inner:before {
+    background: linear-gradient(dodgerblue 50%, gold 50%);
+    content: "";
+    display: block;
+    width: 24px;
+    box-sizing: border-box;
+    /*border: 1px solid red;*/
+}
+
+@keyframes flutter {
+    0% {
+        transform: rotateY(3deg);
+    }
+
+    50% {
+        transform: rotateY(-3deg);
+    }
+}
+
+
+
+.c1 {
+    animation-delay: 0.3s;
+}
+
+
+.c2 {
+    animation-delay: 0.6s;
+}
+
+.c3 {
+    animation-delay: 0.9s;
+}
+
+.c4 {
+    animation-delay: 1.2s;
+}
+
+.c5 {
+    animation-delay: 1.5s;
+}
+
+.c6 {
+    animation-delay: 1.8s;
+}
+
+.c7 {
+    animation-delay: 2.1s;
+}
+
+.c8 {
+    animation-delay: 2.4s;
+}
+
+
+.c9:before {
+    border-radius: 0 10px 10px 0;
 }

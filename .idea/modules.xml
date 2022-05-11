@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../RandomCSSArt/.idea/RandomCSSArt.iml" filepath="$PROJECT_DIR$/../RandomCSSArt/.idea/RandomCSSArt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/RandomCSSArt.iml" filepath="$PROJECT_DIR$/.idea/RandomCSSArt.iml" />
     </modules>
   </component>
 </project>

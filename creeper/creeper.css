@@ -1,0 +1,126 @@
+html {
+    background: #c2f3ff;
+}
+
+body {
+
+}
+
+.canvas {
+    --offsetPerspectiveY: -200px;
+    perspective: 1500px;
+}
+
+.globalCamera {
+    /*transition: transform 0.1s ease;*/
+    /*animation: _rotateYTest 10s linear infinite;*/
+}
+
+.creeper {
+    /*transform: rotateY(30deg);*/
+    --unitSize: 2vh;
+}
+
+.creeperHead {
+    --width: calc(var(--unitSize) * 8);
+    --height: calc(var(--unitSize) * 8);
+    --length: calc(var(--unitSize) * 8);
+    transform: translateY(calc(var(--unitSize) * -10));
+}
+
+.creeperLegs {
+    transform: translateY(calc(var(--unitSize) * 9));
+}
+
+.creeperLeg {
+    --width: calc(var(--unitSize) * 4);
+    --height: calc(var(--unitSize) * 6);
+    --length: calc(var(--unitSize) * 4);
+    transform-origin: 0 calc(var(--height) / -2) calc(var(--length) / -2);
+    animation: walk 2s ease-in-out infinite;
+}
+
+.leg3 .creeperLeg, .leg2 .creeperLeg {
+    transform-origin: 0 calc(var(--height) / -2) calc(var(--length) / 2);
+}
+
+.leg2 .creeperLeg, .leg4 .creeperLeg {
+    animation-delay: -1s;
+}
+
+@keyframes walk {
+    0% {
+        transform: rotateX(7deg);
+    }
+    50% {
+        transform: rotateX(-7deg);
+    }
+    100% {
+        transform: rotateX(7deg);
+    }
+}
+
+.leg1 {
+    transform: translate3d(calc(var(--unitSize) * -2), 0, calc(var(--unitSize) * 4));
+}
+
+.leg2 {
+    transform: translate3d(calc(var(--unitSize) * -2), 0, calc(var(--unitSize) * -4));
+}
+
+.leg3 {
+    transform: translate3d(calc(var(--unitSize) * 2), 0, calc(var(--unitSize) * -4));
+}
+
+.leg4 {
+    transform: translate3d(calc(var(--unitSize) * 2), 0, calc(var(--unitSize) * 4));
+}
+
+.creeper ._reusableBox__boxFace {
+    display: grid;
+    /*filter: drop-shadow(1px 0 #00000088) drop-shadow(-1px 0 #00000088) drop-shadow(0 1px #00000088) drop-shadow(0 -1px #00000088);*/
+    filter: saturate(1.2) drop-shadow(0 0 1px #000a);
+}
+
+.creeperHead ._reusableBox__boxFace {
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.creeperBody {
+    --length: calc(var(--unitSize) * 8);
+    --width: calc(var(--unitSize) * 4);
+    --height: calc(var(--unitSize) * 12);
+}
+
+.explode ._reusableBox__boxFace {
+    animation: flash 0.5s ease-out forwards;
+}
+
+.explode .creeperLeg {
+    animation: none;
+}
+
+.explode {
+    animation: expand 2s cubic-bezier(1, 0, 1, 0.5) forwards;
+}
+
+@keyframes flash {
+    0% {
+        filter: brightness(3) saturate(1.2) drop-shadow(0 0 1px #000a);
+    }
+
+    100% {
+        filter: brightness(1.2) saturate(1.2) drop-shadow(0 0 1px #000a);
+    }
+}
+
+@keyframes expand {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale3d(1.3, 1.3, 1.3);
+    }
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eyedropper</title>
+</head>
+<body>
+<img src="Creeper.png" alt="">
+
+</body>
+<script>
+    const result = [];
+    const eyedropper = new EyeDropper();
+    window.addEventListener("keypress", function(e) {
+        console.log(e.key);
+        if (e.key === "i") {
+            eyedropper.open().then(r=>{result.push(r);console.log(result)});
+        }
+
+    })
+</script>
+</html>

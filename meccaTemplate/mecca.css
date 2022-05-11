@@ -1,0 +1,193 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* The stage. Set the perspective and origin here. */
+.canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    perspective: 500px;
+    --offsetPerspectiveX: 0px;
+    --offsetPerspectiveY: -200px;
+    perspective-origin: calc(50% + var(--offsetPerspectiveX)) calc(50% + var(--offsetPerspectiveY));
+}
+
+/* 3D Canvas transform-style */
+.canvas * {
+    transform-style: preserve-3d;
+}
+
+/* Auto center the camera */
+.canvas > * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.globalCamera {
+    transform: rotateY(180deg);
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateX(0deg);
+    }
+
+    100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+.reusableBox {
+    --width: 200px;
+    --length: 200px;
+    --height: 200px;
+}
+
+._reusableBox__boxFace {
+    position: absolute;
+}
+
+
+._reusableBox__boxFront, ._reusableBox__boxBack {
+    width: var(--length);
+    height: var(--height);
+    left: calc(var(--length) / -2);
+    top: calc(var(--height) / -2);
+}
+
+._reusableBox__boxLeft, ._reusableBox__boxRight {
+    width: var(--width);
+    height: var(--height);
+    left: calc(var(--width) / -2);
+    top: calc(var(--height) / -2);
+}
+
+._reusableBox__boxBottom, ._reusableBox__boxTop {
+    width: var(--length);
+    height: var(--width);
+    left: calc(var(--length) / -2);
+    top: calc(var(--width) / -2);
+}
+
+._reusableBox__boxFront {
+    transform: rotateY(0deg) translateZ(calc(var(--width) / 2));
+}
+
+._reusableBox__boxBack {
+    transform: rotateY(180deg) translateZ(calc(var(--width) / 2));
+}
+
+._reusableBox__boxLeft {
+    transform: rotateY(-90deg) translateZ(calc(var(--length) / 2));
+}
+
+._reusableBox__boxRight {
+    transform: rotateY(90deg) translateZ(calc(var(--length) / 2));
+}
+
+._reusableBox__boxTop {
+    transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+}
+
+._reusableBox__boxBottom {
+    transform: rotateX(-90deg) translateZ(calc(var(--height) / 2));
+}
+
+.test ._reusableBox__boxFront {
+    background: rgba(255, 0, 0, 0.5);
+}
+
+.test ._reusableBox__boxBack {
+    background: rgba(0, 128, 255, 0.5);
+}
+
+.test ._reusableBox__boxLeft {
+    background: rgba(0, 255, 34, 0.5);
+}
+
+.test ._reusableBox__boxRight {
+    background: rgba(221, 0, 255, 0.5);
+}
+
+.test ._reusableBox__boxBottom {
+    background: rgba(230, 255, 0, 0.5);
+}
+
+.test ._reusableBox__boxTop {
+    background: rgba(230, 255, 0, 0.5);
+}
+
+.reusableCylinder {
+    --radius: 70px;
+    --height: 150px;
+}
+
+._reusableCylinder__cylinderFace {
+    background: rgb(189, 189, 189);
+    position: absolute;
+    left: calc(var(--width) / -2);
+    top: calc(var(--height) / -2);
+}
+
+._reusableCylinder__cylinderTop, ._reusableCylinder__cylinderBottom {
+    border-radius: 50%;
+    /*background: black;*/
+    width: calc(2 * var(--radius));
+    aspect-ratio: 1/1;
+    left: calc(-1 * var(--radius));
+    top: calc(-1 * var(--radius));
+}
+
+._reusableCylinder__cylinderStrip {
+    height: var(--height);
+    width: var(--width);
+}
+
+._reusableCylinder__cylinderTop {
+    /*background: red;*/
+    transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+}
+
+._reusableCylinder__cylinderBottom {
+    /*background: red;*/
+    transform: rotateX(-90deg) translateZ(calc(var(--height) / 2));
+}
+
+.reusableThickCylinder {
+    --outerRadius: 70px;
+    --height: 150px;
+    --thickness: 10px;
+}
+
+.reusableThickCylinder .reusableCylinder {
+    --radius: var(--outerRadius);
+    --height: 150px;
+}
+
+.reusableThickCylinder .reusableCylinderInner {
+    --radius: calc(var(--outerRadius) - var(--thickness));
+}
+
+.reusableThickCylinder .reusableCylinder ._reusableCylinder__cylinderTop, .reusableThickCylinder .reusableCylinder ._reusableCylinder__cylinderBottom {
+    border: var(--thickness) solid red;
+    background: none;
+}
+
+.reusableThickCylinder .reusableCylinderInner ._reusableCylinder__cylinderTop, .reusableThickCylinder .reusableCylinderInner ._reusableCylinder__cylinderBottom {
+    display: none;
+}

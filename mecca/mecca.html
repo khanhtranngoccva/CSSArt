@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Internal3DFramework.css">
+    <link rel="stylesheet" href="mecca.css">
+    <title>The Mecca Mosque</title>
+</head>
+<body>
+<div class="canvas">
+    <div class="globalCamera">
+        <div class="mecca">
+            <div class="transformGroup1">
+                <div class="reusableBox makeBlack wall leftEdge"></div>
+                <div class="reusableBox makeBlack wall rightEdge"></div>
+                <div class="reusableBox makeBlack wall frontEdge"></div>
+                <div class="reusableBox makeBlack wall backEdge"></div>
+            </div>
+            <div class="transformGroup2">
+                <div class="reusableBox makeGoldWhite innerEdge leftEdge"></div>
+                <div class="reusableBox makeGoldWhite innerEdge rightEdge"></div>
+                <div class="reusableBox makeGoldWhite innerEdge frontEdge"></div>
+                <div class="reusableBox makeGoldWhite innerEdge backEdge"></div>
+            </div>
+            <div class="reusableBox makeGoldWhite innerFloor"></div>
+            <div class="transformGroup3">
+                <div class="reusableBox makeGold outerEdge leftEdge"></div>
+                <div class="reusableBox makeGold outerEdge rightEdge"></div>
+                <div class="reusableBox makeGold outerEdge frontEdge"></div>
+                <div class="reusableBox makeGold outerEdge backEdge"></div>
+            </div>
+            <div class="transformGroup4">
+                <div class="reusableBox makeGold lowerOuterEdge lowerOuterEdge1"></div>
+                <div class="reusableBox makeGold lowerOuterEdge lowerOuterEdge2"></div>
+                <div class="reusableBox makeGold lowerOuterEdge lowerOuterEdge3"></div>
+                <div class="reusableBox makeGold lowerOuterEdge lowerOuterEdge4"></div>
+                <div class="reusableBox makeGold squareOuterEdge"></div>
+                <div class="reusableBox makeGold squareOuterEdge squareOuterEdge2"></div>
+                <div class="reusableBox makeGold squareOuterEdge squareOuterEdge3"></div>
+                <div class="reusableBox makeGold squareOuterEdge squareOuterEdge4"></div>
+                <div class="reusableBox makeGold squareOuterEdge squareOuterEdge5"></div>
+                <div class="reusableBox makeGold squareOuterEdge squareOuterEdge6"></div>
+                <div class="reusableBox makeGold squareOuterVertex"></div>
+                <div class="reusableBox makeGold squareOuterVertex squareOuterVertex2"></div>
+                <div class="reusableBox makeGold squareOuterVertex squareOuterVertex3"></div>
+                <div class="reusableBox makeGold squareOuterVertex squareOuterVertex4"></div>
+            </div>
+            <div class="reusableBox frontDoor makeGold">
+
+            </div>
+            <div class="reusableBox brickEdge makeBlack"></div>
+        </div>
+<!--        <div class="bigFloor"></div>-->
+<!--        <div class="transformGroup5">-->
+<!--            <div class="outerWall"></div>-->
+<!--        </div>-->
+    </div>
+</div>
+<form action="">
+    <button id="toggle">Toggle rotation control</button>
+    <fieldset id="sliders">
+        <label>X rotation
+            <input type="range" min="-180" max="180" id="rotX">
+        </label>
+        <label>Y rotation
+            <input type="range" min="-180" max="180" id="rotY">
+        </label>
+<!--        <label>Distance-->
+<!--            <input type="range" min="0" max="1000" id="perspective">-->
+<!--        </label>-->
+<!--        <label>X Perspective-->
+<!--            <input type="range" min="-1200" max="1200" id="originX">-->
+<!--        </label>-->
+<!--        <label>Y Perspective-->
+<!--            <input type="range" min="-1200" max="1200" id="originY"></label>-->
+    </fieldset>
+</form>
+</body>
+<script src="mecca.js"></script>
+</html>

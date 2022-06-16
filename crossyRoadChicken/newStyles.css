@@ -1,0 +1,149 @@
+.canvas {
+    background: skyblue;
+    perspective: calc(var(--unitSize) * 10000);
+    --offsetPerspectiveX: calc(var(--unitSize) * 0);
+    --offsetPerspectiveY: calc(var(--unitSize) * -20);
+    --unitSize: 10px;
+}
+
+.chicken {
+    --lightYellow: #FFE09D;
+    --lightOrange: #f2bd7f;
+    --darkerOrange: #e9ac63;
+    --evenDarkerOrange: #eca149;
+    --darkestOrange: #dc9038;
+    --frontWhite: #ffffff;
+    --sideWhite: #d6d6d6;
+    --backWhite: #bebebe;
+    --bottomWhite: #adadad;
+    --topWhite: #f2f2f2;
+    transform-origin: 0 calc(var(--unitSize) * 11) 0;
+    /*transform: scaleY(0.01);*/
+}
+
+
+.legColoring {
+    --topBackground: var(--lightOrange);
+    --frontBackground: var(--lightYellow);
+    --leftBackground: var(--darkerOrange);
+    --rightBackground: var(--darkerOrange);
+    --bottomBackground: var(--darkestOrange);
+    --backBackground: var(--evenDarkerOrange);
+}
+
+.bodyColoring {
+    --topBackground: var(--topWhite);
+    --frontBackground: var(--frontWhite);
+    --backBackground: var(--backWhite);
+    --bottomBackground: var(--bottomWhite);
+    --leftBackground: var(--sideWhite);
+    --rightBackground: var(--sideWhite);
+}
+
+.feetSide {
+    --width: calc(var(--unitSize) * 10);
+    --height: calc(var(--unitSize) * 1.5);
+    --length: calc(var(--unitSize) * 1.5);
+}
+
+.feetSide:first-of-type {
+    transform: translateX(calc(var(--unitSize) * -1.5));
+}
+
+.feetSide:last-of-type {
+    transform: translateX(calc(var(--unitSize) * 1.5));
+}
+
+.feetMid {
+    --width: calc(var(--unitSize) * 7);
+    --height: calc(var(--unitSize) * 1.5);
+    --length: calc(var(--unitSize) * 1.5);
+    transform: translateZ(calc(var(--unitSize) * -1.5));
+}
+
+.leg {
+    --width: calc(var(--unitSize) * 2);
+    --height: calc(var(--unitSize) * 6);
+    --length: calc(var(--unitSize) * 2);
+    transform: translateY(calc(var(--unitSize) * -2.5)) translateZ(calc(var(--unitSize) * -1));
+}
+
+.legOverlay:first-of-type {
+    transform: translateX(calc(var(--unitSize) * -4));
+}
+
+.legOverlay:last-of-type {
+    transform: translateX(calc(var(--unitSize) * 4));
+}
+
+.legs {
+    transform: translateY(calc(var(--unitSize) * 10));
+}
+
+.chickenBody {
+    transform: translateZ(calc(var(--unitSize) * -2));
+}
+
+.mainBody {
+    --width: calc(var(--unitSize) * 18);
+    --height: calc(var(--unitSize) * 10);
+    --length: calc(var(--unitSize) * 11);
+}
+
+.tail {
+    --width: calc(var(--unitSize) * 19);
+    --height: calc(var(--unitSize) * 10);
+    --length: calc(var(--unitSize) * 9);
+    transform: translateZ(calc(var(--unitSize) * -1));
+}
+
+.wings {
+    --width: calc(var(--unitSize) * 13);
+    --height: calc(var(--unitSize) * 6);
+    --length: calc(var(--unitSize) * 17);
+    transform: translateY(calc(var(--unitSize) * 1)) translateZ(calc(var(--unitSize) * 1));
+}
+
+.chickenHead {
+    --width: calc(var(--unitSize) * 12);
+    --height: calc(var(--unitSize) * 12);
+    --length: calc(var(--unitSize) * 11);
+    transform: translateY(calc(var(--unitSize) * -10)) translateZ(calc(var(--unitSize) * 3));
+}
+
+.eyes {
+    --leftBackground: #414141;
+    --rightBackground: #414141;
+    --width: calc(var(--unitSize) * 1.5);
+    --height: calc(var(--unitSize) * 1.5);
+    --length: calc(var(--unitSize) * 11.1);
+    transform: translateY(calc(var(--unitSize) * -12.5)) translateZ(calc(var(--unitSize) * 6));
+}
+
+.nose {
+   --width: calc(var(--unitSize) * 12);
+    --height: calc(var(--unitSize) * 3.5);
+    --length: calc(var(--unitSize) * 3.5);
+    transform: translateZ(calc(var(--unitSize) * 8)) translateY(calc(var(--unitSize) * -10));
+}
+.noseBelow {
+    --width: calc(var(--unitSize) * 10);
+    --height: calc(var(--unitSize) * 3);
+    --length: calc(var(--unitSize) * 3.5);
+    transform: translateZ(calc(var(--unitSize) * 8)) translateY(calc(var(--unitSize) * -6.75));
+}
+.noseAbove {
+    --width: calc(var(--unitSize) * 6);
+    --height: calc(var(--unitSize) * 3);
+    --length: calc(var(--unitSize) * 3.5);
+    transform: translateY(calc(var(--unitSize) * -17)) translateZ(calc(var(--unitSize) * 4));
+}
+
+.noseColoring {
+    --topBackground: #dd9292;
+    --leftBackground: #db7c7d;
+    --rightBackground: #db7c7d;
+    --bottomBackground: #c56163;
+    --frontBackground: #eb9e9e;
+    --backBackground: #c56163;
+}

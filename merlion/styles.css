@@ -1,0 +1,78 @@
+* {
+    box-sizing: border-box;
+}
+
+*::before, *::after {
+    box-sizing: border-box;
+    content: "";
+    display: block;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.canvas {
+    background: skyblue;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    --scaleColor: #cbcbcb;
+    --accent1: #EAEAEA;
+    --accent2: #BDBDC2;
+}
+
+.scaledBody {
+    width: 200px;
+    aspect-ratio: 0.5/1;
+    background: radial-gradient(circle at 50% 0%, transparent 45%, var(--scaleColor) 47%, var(--scaleColor) 52%, transparent 5%) 15px 15px,
+    radial-gradient(circle at 50% 0%, transparent 46%, var(--scaleColor) 47%, var(--scaleColor) 52%, transparent 54%) 0 0,
+    #AAA9AE;
+    background-size: 30px 29px;
+    border-radius: 200px;
+    position: relative;
+}
+
+.tail {
+    position: absolute;
+    transform-origin: 50px 50px;
+}
+
+.tailStrip1 {
+    position: absolute;
+    aspect-ratio: 1/1;
+    width: 100px;
+    border-radius: 50%;
+    border-width: 0 0 0 24px;
+    border-style: solid;
+    border-color: var(--accent1);
+    transform-origin: 50% 0%;
+}
+
+.tailStrip1::before {
+    position: absolute;
+    width: 4px;
+    height: 20px;
+    background: var(--accent1);
+    border-radius: 40px;
+    transform: translate(16px, 86px) rotate(110deg);
+}
+
+.tailStrip2 {
+    border-color: var(--accent2);
+    transform: rotate(-15deg);
+}
+
+.tailStrip2::before {
+    background: var(--accent2);
+}

@@ -1,0 +1,148 @@
+.canvas {
+    background: skyblue;
+    perspective: 100000px;
+    --offsetPerspectiveX: 0px;
+    --offsetPerspectiveY: -200px;
+}
+
+.chicken {
+    --lightYellow: #FFE09D;
+    --lightOrange: #f2bd7f;
+    --darkerOrange: #e9ac63;
+    --evenDarkerOrange: #eca149;
+    --darkestOrange: #dc9038;
+    --frontWhite: #ffffff;
+    --sideWhite: #d6d6d6;
+    --backWhite: #bebebe;
+    --bottomWhite: #adadad;
+    --topWhite: #f2f2f2;
+    transform-origin: 0 110px 0;
+    transform: scaleY(0.01);
+}
+
+
+.legColoring {
+    --topBackground: var(--lightOrange);
+    --frontBackground: var(--lightYellow);
+    --leftBackground: var(--darkerOrange);
+    --rightBackground: var(--darkerOrange);
+    --bottomBackground: var(--darkestOrange);
+    --backBackground: var(--evenDarkerOrange);
+}
+
+.bodyColoring {
+    --topBackground: var(--topWhite);
+    --frontBackground: var(--frontWhite);
+    --backBackground: var(--backWhite);
+    --bottomBackground: var(--bottomWhite);
+    --leftBackground: var(--sideWhite);
+    --rightBackground: var(--sideWhite);
+}
+
+.feetSide {
+    --width: 100px;
+    --height: 15px;
+    --length: 15px;
+}
+
+.feetSide:first-of-type {
+    transform: translateX(-15px);
+}
+
+.feetSide:last-of-type {
+    transform: translateX(15px);
+}
+
+.feetMid {
+    --width: 70px;
+    --height: 15px;
+    --length: 15px;
+    transform: translateZ(-15px);
+}
+
+.leg {
+    --width: 20px;
+    --height: 60px;
+    --length: 20px;
+    transform: translateY(-25px) translateZ(-10px);
+}
+
+.legOverlay:first-of-type {
+    transform: translateX(-40px);
+}
+
+.legOverlay:last-of-type {
+    transform: translateX(40px);
+}
+
+.legs {
+    transform: translateY(100px);
+}
+
+.chickenBody {
+    transform: translateZ(-20px);
+}
+
+.mainBody {
+    --width: 180px;
+    --height: 100px;
+    --length: 110px;
+}
+
+.tail {
+    --width: 190px;
+    --height: 100px;
+    --length: 90px;
+    transform: translateZ(-10px);
+}
+
+.wings {
+    --width: 130px;
+    --height: 60px;
+    --length: 170px;
+    transform: translateY(10px) translateZ(10px);
+}
+
+.chickenHead {
+    --width: 120px;
+    --height: 120px;
+    --length: 110px;
+    transform: translateY(-100px) translateZ(30px);
+}
+
+.eyes {
+    --leftBackground: #414141;
+    --rightBackground: #414141;
+    --width: 15px;
+    --height: 15px;
+    --length: 111px;
+    transform: translateY(-125px) translateZ(60px);
+}
+
+.nose {
+   --width: 120px;
+    --height: 35px;
+    --length: 35px;
+    transform: translateZ(80px) translateY(-100px);
+}
+.noseBelow {
+    --width: 100px;
+    --height: 30px;
+    --length: 35px;
+    transform: translateZ(80px) translateY(-67.5px);
+}
+.noseAbove {
+    --width: 60px;
+    --height: 30px;
+    --length: 35px;
+    transform: translateY(-170px) translateZ(40px);
+}
+
+.noseColoring {
+    --topBackground: #dd9292;
+    --leftBackground: #db7c7d;
+    --rightBackground: #db7c7d;
+    --bottomBackground: #c56163;
+    --frontBackground: #eb9e9e;
+    --backBackground: #c56163;
+}

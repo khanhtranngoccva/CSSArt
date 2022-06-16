@@ -30,7 +30,6 @@ body {
 /* 3D Canvas transform-style */
 .canvas * {
     transform-style: preserve-3d;
-    /*will-change: transform;*/
 }
 
 /* Auto center the camera */
